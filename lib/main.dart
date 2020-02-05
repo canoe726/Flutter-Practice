@@ -4,7 +4,15 @@ void main() => runApp(MaterialApp(
   home: YBCard(),
 ));
 
-class YBCard extends StatelessWidget {
+class YBCard extends StatefulWidget {
+  @override
+  _YBCardState createState() => _YBCardState();
+}
+
+class _YBCardState extends State<YBCard> {
+
+  int ybLevel = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,6 +22,15 @@ class YBCard extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.indigo,
         elevation: 0.0,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() { // trigger of build function
+            ybLevel += 1;
+          });
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.indigoAccent,
       ),
       body: Padding(
         padding: EdgeInsets.fromLTRB(30.0, 40.0, 30.0, 0.0),
@@ -57,7 +74,7 @@ class YBCard extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Text(
-              '8',
+              '$ybLevel',
               style: TextStyle(
                 color: Colors.blueGrey[900],
                 letterSpacing: 2.0,
@@ -89,5 +106,6 @@ class YBCard extends StatelessWidget {
     );
   }
 }
+
 
 
